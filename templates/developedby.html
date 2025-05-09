@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Developed By | SathiNOVA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="static/HeadIcon.png" sizes="32x32">
+
+    <!-- Bootstrap CSS -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    >
+
+    <style>
+        body {
+            padding-top: 70px;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .developer-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 15px;
+        }
+        .section-heading {
+            text-align: center;
+            font-size: 28px;
+            color: #4169e1;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .section-heading img {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+        .footer span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌐 NAVBAR START -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+        <!-- Brand: Left-aligned -->
+        <a class="navbar-brand" href="{{ url_for('home') }}">SathiNOVA</a>
+
+        <!-- Toggler for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Centered navigation links -->
+            <ul class="navbar-nav me-auto ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('question_papers') }}">Question Papers</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ url_for('developedby') }}">Developed By</a></li>
+            </ul>
+
+            <!-- Right-aligned user status -->
+            <div class="d-flex align-items-center">
+                {% if 'user' in session %}
+                    <span class="text-white me-3">Welcome, {{ session['user'] }}</span>
+                    <a class="nav-link text-white p-0" href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a class="nav-link text-white" href="{{ url_for('login') }}">Login/Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- 🌐 NAVBAR END -->
+
+
+    <!-- 👤 Developer Info Section -->
+    <div class="developer-section">
+        <h2 class="section-heading">
+            <img src="{{ url_for('static', filename='SideIcon.png') }}" alt="icon"> Developed By
+        </h2>
+    
+        <!-- Developer Profile Card -->
+        <div class="card text-center">
+            <div class="d-flex flex-column align-items-center">
+                <img src="{{ url_for('static', filename='AnindyaProfile.png') }}" alt="Anindya Maity" 
+                     class="rounded-circle mb-3" 
+                     style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #4169e1;">
+        
+                <h3 class="mb-0">Anindya Maity</h3>
+                <p class="text-muted mb-2">Lead Developer | AI Researcher</p>
+                <p><strong>Email:</strong> <a href="mailto:anindyaofficial.me@gmail.com">anindyaofficial.me@gmail.com</a></p>
+        
+                <div class="mb-2">
+                    <a href="https://github.com/AnindyaMaity" target="_blank">
+                        <i class="bi bi-github fs-4 me-3"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/AnindyaMaity" target="_blank">
+                        <i class="bi bi-linkedin fs-4 me-3"></i>
+                    </a>
+                    <a href="https://twitter.com/AnindyaMaity" target="_blank">
+                        <i class="bi bi-twitter fs-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    
+        <!-- Project Description -->
+        <div class="card text">
+            <h3>SathiNOVA</h3>
+            <p>An intelligent document-to-MCQ generator powered by LangChain, Groq API, and Flask backend.</p>
+        </div>
+    
+        <!-- Tech Stack -->
+        <div class="card text">
+            <h4>🛠️ Tech Stack</h4>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                <span class="badge bg-dark">Python</span>
+                <span class="badge bg-primary">Flask</span>
+                <span class="badge bg-info text-dark">LangChain</span>
+                <span class="badge bg-success">Groq API</span>
+                <span class="badge bg-warning text-dark">Bootstrap 5</span>
+            </div>
+        </div>
+    
+        <!-- AI Capabilities -->
+        <div class="card text">
+            <h4>🤖 AI Capabilities</h4>
+            <ul>
+                <li>Real-time document-to-MCQ generation</li>
+                <li>Difficulty-level based MCQs</li>
+                <li>Contextual summarization & NLP understanding</li>
+                <li>Seamless Flask backend integration</li>
+            </ul>
+        </div>
+    
+        <!-- Version Info -->
+        <div class="card text text-center">
+            <h5 class="text-muted">Version 2.0.1 (Stable)</h5>
+            <p class="mb-0">Last updated: April 2025</p>
+        </div>
+    
+        <!-- Optional QR Section -->
+        <div class="card text text-center">
+            <h4>📱 Try It Yourself</h4>
+            <img src="{{ url_for('static', filename='qrcode.png') }}" alt="QR Code" style="width: 120px;">
+            <p class="mt-2"><a href="/download">Click here to download</a></p>
+        </div>
+    
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 <strong>SathiNOVA</strong> | Made with <span>❤️</span> by Anindya Maity
+        </div>
+    </div>
+    
+    
+
+    <!-- Bootstrap JS -->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+</body>
+</html>

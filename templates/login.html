@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SathiNOVA - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .popup-card {
+            display: none;
+            position: fixed;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            font-size: 18px;
+            min-width: 250px;
+        }
+
+        .popup-card.success {
+            border: 2px solid green;
+            color: green;
+        }
+
+        .popup-card.error {
+            border: 2px solid red;
+            color: red;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2><b>SathiNOVA - Login Portal</b></h2>
+            <form id="loginForm">
+                <div class="textbox">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                <input type="submit" value="Login">
+                <div class="register-link">
+                    Don't have an account? <a href="{{ url_for('register') }}">Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Overlay and Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup-card" id="popupCard"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // prevent default form submission
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json(); // expecting JSON response
+
+            const popup = document.getElementById('popupCard');
+            const overlay = document.getElementById('overlay');
+
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+
+            if (result.status === 'success') {
+                popup.textContent = 'Login Successful!';
+                popup.className = 'popup-card success';
+                setTimeout(() => {
+                    window.location.href = '/index';
+                }, 2000);
+            } else {
+                popup.textContent = 'Wrong Credentials!';
+                popup.className = 'popup-card error';
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

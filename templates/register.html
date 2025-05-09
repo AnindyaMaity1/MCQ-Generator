@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SathiNOVA - Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .flash-messages {
+        margin-bottom: 20px;
+    }
+    .flash {
+        padding: 12px;
+        border-radius: 5px;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .flash.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .flash.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h2><b>SathiNOVA - Register Portal</b></h2>
+
+      <!-- Flash messages logic -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Registration form -->
+      <form action="/register" method="POST">
+        <div class="textbox">
+          <input type="text" placeholder="Full Name" name="fullname" required>
+        </div>
+        <div class="textbox">
+          <input type="email" placeholder="Email" name="email" required>
+        </div>
+        <div class="textbox">
+          <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <div class="textbox">
+          <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
+        </div>
+        <input type="submit" value="Register">
+        <div class="register-link">
+          Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
