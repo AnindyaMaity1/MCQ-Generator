@@ -1,12 +1,56 @@
-Flask
-python-dotenv
-pdfplumber
-python-docx
-fpdf
-reportlab
-langchain
-openai
-groq  # Required for llama3-70b-8192 model
-tiktoken
-requests
-SQLAlchemy
+Flask==3.1.0
+python-dotenv==1.1.0
+pdfplumber==0.11.6
+python-docx==1.1.2
+fpdf==1.7.2
+reportlab==4.4.0
+langchain==0.3.25
+openai==1.78.0
+groq==0.24.0
+tiktoken==0.9.0
+requests==2.32.3
+SQLAlchemy==2.0.40
+
+# sub-dependencies for pdfplumber
+pdfminer.six==20250327
+Pillow>=9.1
+pypdfium2>=4.18.0
+charset-normalizer>=2.0.0
+cryptography>=36.0.0
+
+# sub-dependencies for python-docx
+lxml>=3.1.0
+typing-extensions>=4.9.0
+
+# Flask internal dependencies (sometimes missed)
+Werkzeug>=3.1
+Jinja2>=3.1.2
+itsdangerous>=2.2
+click>=8.1.3
+blinker>=1.9
+
+# sub-dependencies for langchain
+langchain-core>=0.3.58,<1.0.0
+langchain-text-splitters>=0.3.8,<1.0.0
+langsmith>=0.1.17,<0.4
+pydantic>=2.7.4,<3.0.0
+PyYAML>=5.3
+
+# openai dependencies
+anyio>=3.5.0,<5
+distro>=1.7.0,<2
+httpx>=0.23.0,<1
+jiter>=0.4.0,<1
+sniffio
+tqdm>4
+
+# tiktoken dependencies
+regex>=2022.1.18
+
+# requests dependencies
+idna>=2.5,<4
+urllib3>=1.21.1,<3
+certifi>=2017.4.17
+
+# SQLAlchemy dependency
+greenlet>=1
